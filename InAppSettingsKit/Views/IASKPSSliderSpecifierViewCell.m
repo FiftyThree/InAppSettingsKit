@@ -23,6 +23,7 @@
 @synthesize slider=_slider, 
             minImage=_minImage, 
             maxImage=_maxImage;
+@synthesize minValueLabel, currentValueLabel, maxValueLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -48,6 +49,28 @@
         UIViewAutoresizingFlexibleBottomMargin;
         [self.contentView addSubview:_maxImage];
 
+        self.minValueLabel = [[[UILabel alloc] init] autorelease];
+        self.currentValueLabel = [[[UILabel alloc] init] autorelease];
+        self.maxValueLabel = [[[UILabel alloc] init] autorelease];
+        [minValueLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [currentValueLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [maxValueLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [minValueLabel setTextColor:[UIColor blackColor]];
+        [currentValueLabel setTextColor:[UIColor blackColor]];
+        [maxValueLabel setTextColor:[UIColor blackColor]];
+        minValueLabel.textAlignment = UITextAlignmentLeft;
+        currentValueLabel.textAlignment = UITextAlignmentCenter;
+        maxValueLabel.textAlignment = UITextAlignmentRight;
+        minValueLabel.backgroundColor = [UIColor clearColor];
+        currentValueLabel.backgroundColor = [UIColor clearColor];
+        maxValueLabel.backgroundColor = [UIColor clearColor];
+        minValueLabel.opaque = NO;
+        currentValueLabel.opaque = NO;
+        maxValueLabel.opaque = NO;
+        [self.contentView addSubview:minValueLabel];
+        [self.contentView addSubview:currentValueLabel];
+        [self.contentView addSubview:maxValueLabel];
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -82,19 +105,46 @@
         _maxImage.center = CGPointMake(self.contentView.bounds.size.width - _maxImage.frame.size.width / 2 - kIASKPaddingRight,
                                        self.contentView.center.y);
 	}
+    
+    [minValueLabel sizeToFit];
+    [currentValueLabel sizeToFit];
+    [maxValueLabel sizeToFit];
+    minValueLabel.frame = CGRectMake(+5,
+                                     -5 + self.contentView.bounds.size.height - maxValueLabel.bounds.size.height,
+                                     minValueLabel.frame.size.width,
+                                     minValueLabel.frame.size.height);
+    currentValueLabel.frame = CGRectMake((self.contentView.bounds.size.width - maxValueLabel.bounds.size.width) / 2.f,
+                                         -5 + self.contentView.bounds.size.height - currentValueLabel.bounds.size.height,
+                                         currentValueLabel.frame.size.width,
+                                         currentValueLabel.frame.size.height);
+    maxValueLabel.frame = CGRectMake(-5 + self.contentView.bounds.size.width - maxValueLabel.bounds.size.width,
+                                     -5 + self.contentView.bounds.size.height - maxValueLabel.bounds.size.height,
+                                     maxValueLabel.frame.size.width,
+                                     maxValueLabel.frame.size.height);
 	
-	_slider.bounds = sliderBounds;
-    _slider.center = sliderCenter;
-}	
+    sliderBounds = _slider.superview.bounds;
+    sliderBounds.origin = CGPointZero;
+    sliderBounds.size.height -= 5 + MAX(minValueLabel.frame.size.height,
+                                        MAX(currentValueLabel.frame.size.height,
+                                            maxValueLabel.frame.size.height));
+	_slider.frame = sliderBounds;
+}
 
 - (void)dealloc {
 	_minImage.image = nil;
 	_maxImage.image = nil;
+	self.minValueLabel = nil;
+	self.currentValueLabel = nil;
+	self.maxValueLabel = nil;
     [super dealloc];
 }
 
 - (void)prepareForReuse {
 	_minImage.image = nil;
 	_maxImage.image = nil;
+    [minValueLabel setText:@""];
+    [currentValueLabel setText:@""];
+    [maxValueLabel setText:@""];
 }
+
 @end

@@ -27,5 +27,8 @@
 @property (nonatomic, assign) IASKSlider *slider;
 @property (nonatomic, assign) UIImageView *minImage;
 @property (nonatomic, assign) UIImageView *maxImage;
+@property (nonatomic, retain) UILabel *minValueLabel;
+@property (nonatomic, retain) UILabel *currentValueLabel;
+@property (nonatomic, retain) UILabel *maxValueLabel;
 
 @end

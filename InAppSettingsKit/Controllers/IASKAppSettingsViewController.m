@@ -406,6 +406,9 @@ CGRect IASKCGRectSwap(CGRect rect);
 			return 0;
 		}
 	}
+    else if ([[specifier type] isEqualToString:kIASKPSSliderSpecifier]) {
+        return tableView.rowHeight * 1.5;
+	}
 	return tableView.rowHeight;
 }
 
@@ -577,14 +580,19 @@ CGRect IASKCGRectSwap(CGRect rect);
 		if (specifier.maximumValueImage.length > 0) {
 			((IASKPSSliderSpecifierViewCell*)cell).maxImage.image = [UIImage imageWithContentsOfFile:[_settingsReader pathForImageNamed:specifier.maximumValueImage]];
 		}
-		
+  
 		IASKSlider *slider = ((IASKPSSliderSpecifierViewCell*)cell).slider;
 		slider.minimumValue = specifier.minimumValue;
 		slider.maximumValue = specifier.maximumValue;
 		slider.value =	[self.settingsStore objectForKey:specifier.key] != nil ? [[self.settingsStore objectForKey:specifier.key] floatValue] : [specifier.defaultValue floatValue];
 		[slider addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
 		slider.key = specifier.key;
-		[cell setNeedsLayout];
+
+        [((IASKPSSliderSpecifierViewCell*)cell).minValueLabel setText:[NSString stringWithFormat:@"Min: %0.2f", specifier.minimumValue]];
+        [((IASKPSSliderSpecifierViewCell*)cell).currentValueLabel setText:[NSString stringWithFormat:@"%0.2f", slider.value]];
+        [((IASKPSSliderSpecifierViewCell*)cell).maxValueLabel setText:[NSString stringWithFormat:@"Max: %0.2f", specifier.maximumValue]];
+        
+        [cell setNeedsLayout];
 	}
 	else if ([specifier.type isEqualToString:kIASKPSChildPaneSpecifier]) {
 		cell.textLabel.text = specifier.title;
