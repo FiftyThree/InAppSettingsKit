@@ -110,10 +110,10 @@
     [currentValueLabel sizeToFit];
     [maxValueLabel sizeToFit];
     minValueLabel.frame = CGRectMake(+5,
-                                     -5 + self.contentView.bounds.size.height - maxValueLabel.bounds.size.height,
+                                     -5 + self.contentView.bounds.size.height - minValueLabel.bounds.size.height,
                                      minValueLabel.frame.size.width,
                                      minValueLabel.frame.size.height);
-    currentValueLabel.frame = CGRectMake((self.contentView.bounds.size.width - maxValueLabel.bounds.size.width) / 2.f,
+    currentValueLabel.frame = CGRectMake((self.contentView.bounds.size.width - currentValueLabel.bounds.size.width) / 2.f,
                                          -5 + self.contentView.bounds.size.height - currentValueLabel.bounds.size.height,
                                          currentValueLabel.frame.size.width,
                                          currentValueLabel.frame.size.height);
