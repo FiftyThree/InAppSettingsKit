@@ -113,7 +113,8 @@
                                      -5 + self.contentView.bounds.size.height - minValueLabel.bounds.size.height,
                                      minValueLabel.frame.size.width,
                                      minValueLabel.frame.size.height);
-    currentValueLabel.frame = CGRectMake((self.contentView.bounds.size.width - currentValueLabel.bounds.size.width) / 2.f,
+    // Round location to ensure pixel alignment.
+    currentValueLabel.frame = CGRectMake(roundf((self.contentView.bounds.size.width - currentValueLabel.bounds.size.width) / 2.f),
                                          -5 + self.contentView.bounds.size.height - currentValueLabel.bounds.size.height,
                                          currentValueLabel.frame.size.width,
                                          currentValueLabel.frame.size.height);
