@@ -6,3 +6,5 @@ InAppSettingsKitSampleApp/build/**
 **/*.xcodeproj/xcuserdata/
 .DS_Store
 .svn
+build/*
+xcuserdata/
