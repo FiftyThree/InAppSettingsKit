@@ -105,6 +105,9 @@
         _maxImage.center = CGPointMake(self.contentView.bounds.size.width - _maxImage.frame.size.width / 2 - kIASKPaddingRight,
                                        self.contentView.center.y);
 	}
+    [_slider addTarget:self
+                action:@selector(sliderValueDidChange:)
+      forControlEvents:UIControlEventAllTouchEvents | UIControlEventValueChanged];
     
     [minValueLabel sizeToFit];
     [currentValueLabel sizeToFit];
@@ -129,6 +132,11 @@
                                         MAX(currentValueLabel.frame.size.height,
                                             maxValueLabel.frame.size.height));
 	_slider.frame = sliderBounds;
+}
+
+- (void)sliderValueDidChange:(id)sender {
+    [self.currentValueLabel setText:[NSString stringWithFormat:@"%0.2f", self.slider.value]];
+    [self.currentValueLabel sizeToFit];
 }
 
 - (void)dealloc {
