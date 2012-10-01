@@ -41,6 +41,10 @@ static NSString *kIASKCredits = @"Powered by InAppSettingsKit"; // Leave this as
 CGRect IASKCGRectSwap(CGRect rect);
 
 @interface IASKAppSettingsViewController ()
+{
+    BOOL _UpdateSuppressed;
+}
+
 @property (nonatomic, retain) NSMutableArray *viewList;
 @property (nonatomic, retain) id currentFirstResponder;
 
@@ -377,12 +381,14 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 - (void)sliderChangedValue:(id)sender {
+    _UpdateSuppressed = YES;
     IASKSlider *slider = [[(IASKSlider*)sender retain] autorelease];
     [self.settingsStore setFloat:[slider value] forKey:[slider key]];
     [[NSNotificationCenter defaultCenter] postNotificationName:kIASKAppSettingChanged
                                                         object:[slider key]
                                                       userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[slider value]]
                                                                                            forKey:[slider key]]];
+    _UpdateSuppressed = NO;
 }
 
 
@@ -580,12 +586,14 @@ CGRect IASKCGRectSwap(CGRect rect);
 		if (specifier.maximumValueImage.length > 0) {
 			((IASKPSSliderSpecifierViewCell*)cell).maxImage.image = [UIImage imageWithContentsOfFile:[_settingsReader pathForImageNamed:specifier.maximumValueImage]];
 		}
-  
+        
 		IASKSlider *slider = ((IASKPSSliderSpecifierViewCell*)cell).slider;
 		slider.minimumValue = specifier.minimumValue;
 		slider.maximumValue = specifier.maximumValue;
 		slider.value =	[self.settingsStore objectForKey:specifier.key] != nil ? [[self.settingsStore objectForKey:specifier.key] floatValue] : [specifier.defaultValue floatValue];
-		[slider addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
+		[slider addTarget:self
+                   action:@selector(sliderChangedValue:)
+         forControlEvents:UIControlEventAllTouchEvents | UIControlEventValueChanged];
 		slider.key = specifier.key;
 
         [((IASKPSSliderSpecifierViewCell*)cell).minValueLabel setText:[NSString stringWithFormat:@"Min: %0.2f", specifier.minimumValue]];
@@ -859,6 +867,10 @@ CGRect IASKCGRectSwap(CGRect rect);
 
 static NSDictionary *oldUserDefaults = nil;
 - (void)userDefaultsDidChange {
+    if (_UpdateSuppressed)
+    {
+        return;
+    }
 	NSDictionary *currentDict = [NSUserDefaults standardUserDefaults].dictionaryRepresentation;
 	NSMutableArray *indexPathsToUpdate = [NSMutableArray array];
 	for (NSString *key in currentDict.allKeys) {
