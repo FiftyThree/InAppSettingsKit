@@ -266,6 +266,38 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		34914A7217469B4300556BEC /* Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					EIGEN_DONT_VECTORIZE,
+					EIGEN_DISABLE_UNALIGNED_ARRAY_ASSERT,
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Internal;
+		};
+		34914A7317469B4300556BEC /* Internal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/InAppSettingsKit.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InAppSettingsKit-Prefix.pch";
+				OTHER_LDFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "/../$(PRODUCT_NAME)/$(PRODUCT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "/../$(PRODUCT_NAME)/$(PRODUCT_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Internal;
+		};
 		B9826C9C1487DD1300EEF3E5 /* TestFlight */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -406,6 +438,7 @@
 				B9CF308513A91A3700ED443E /* Debug */,
 				B9CF308613A91A3700ED443E /* Release */,
 				B9826C9C1487DD1300EEF3E5 /* TestFlight */,
+				34914A7217469B4300556BEC /* Internal */,
 				B9826CAB1487E0F700EEF3E5 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -417,6 +450,7 @@
 				B9CF308813A91A3700ED443E /* Debug */,
 				B9CF308913A91A3700ED443E /* Release */,
 				B9826C9D1487DD1300EEF3E5 /* TestFlight */,
+				34914A7317469B4300556BEC /* Internal */,
 				B9826CAC1487E0F700EEF3E5 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
