@@ -298,7 +298,7 @@
 			};
 			name = Internal;
 		};
-		B9826C9C1487DD1300EEF3E5 /* TestFlight */ = {
+		B9826C9C1487DD1300EEF3E5 /* Preview */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -313,9 +313,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 			};
-			name = TestFlight;
+			name = Preview;
 		};
-		B9826C9D1487DD1300EEF3E5 /* TestFlight */ = {
+		B9826C9D1487DD1300EEF3E5 /* Preview */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -328,7 +328,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "/../$(PRODUCT_NAME)/$(PRODUCT_NAME)";
 				SKIP_INSTALL = YES;
 			};
-			name = TestFlight;
+			name = Preview;
 		};
 		B9826CAB1487E0F700EEF3E5 /* Production */ = {
 			isa = XCBuildConfiguration;
@@ -437,7 +437,7 @@
 			buildConfigurations = (
 				B9CF308513A91A3700ED443E /* Debug */,
 				B9CF308613A91A3700ED443E /* Release */,
-				B9826C9C1487DD1300EEF3E5 /* TestFlight */,
+				B9826C9C1487DD1300EEF3E5 /* Preview */,
 				34914A7217469B4300556BEC /* Internal */,
 				B9826CAB1487E0F700EEF3E5 /* Production */,
 			);
@@ -449,7 +449,7 @@
 			buildConfigurations = (
 				B9CF308813A91A3700ED443E /* Debug */,
 				B9CF308913A91A3700ED443E /* Release */,
-				B9826C9D1487DD1300EEF3E5 /* TestFlight */,
+				B9826C9D1487DD1300EEF3E5 /* Preview */,
 				34914A7317469B4300556BEC /* Internal */,
 				B9826CAC1487E0F700EEF3E5 /* Production */,
 			);
