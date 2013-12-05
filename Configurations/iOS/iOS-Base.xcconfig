@@ -25,3 +25,6 @@ SUPPORTED_PLATFORMS = iphonesimulator iphoneos
 
 // Supported architectures
 VALID_ARCHS = armv6 armv7 armv7s i386 x86_64
+
+PUBLIC_HEADERS_FOLDER_PATH = /../$(PRODUCT_NAME)/$(PRODUCT_NAME)
+PRIVATE_HEADERS_FOLDER_PATH = /../$(PRODUCT_NAME)/$(PRODUCT_NAME)
