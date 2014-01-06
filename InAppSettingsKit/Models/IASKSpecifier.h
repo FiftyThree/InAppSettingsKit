@@ -58,5 +58,10 @@
 - (UIImage *)cellImage;
 - (UIImage *)highlightedCellImage;
 - (BOOL)adjustsFontSizeToFitWidth;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (UITextAlignment)textAlignment;
+#pragma clang diagnostic pop
+
 @end
