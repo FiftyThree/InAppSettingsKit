@@ -27,6 +27,9 @@
 #import "IASKSpecifierValuesViewController.h"
 #import "IASKTextField.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
+
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
 static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
@@ -909,3 +912,5 @@ CGRect IASKCGRectSwap(CGRect rect) {
 	return newRect;
 }
 @end
+
+#pragma clang diagnostic pop
