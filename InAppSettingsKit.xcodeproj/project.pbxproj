@@ -221,7 +221,7 @@
 		B9CF307413A91A3700ED443E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "FiftyThree, Inc.";
 			};
 			buildConfigurationList = B9CF307713A91A3700ED443E /* Build configuration list for PBXProject "InAppSettingsKit" */;
