@@ -416,9 +416,9 @@ CGRect IASKCGRectSwap(CGRect rect);
 		}
 	}
     else if ([[specifier type] isEqualToString:kIASKPSSliderSpecifier]) {
-        return tableView.rowHeight * 1.5;
+        return MAX(tableView.rowHeight * 1.5,44);
 	}
-	return tableView.rowHeight;
+	return MAX(44, tableView.rowHeight);
 }
 
 - (NSString *)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section {
